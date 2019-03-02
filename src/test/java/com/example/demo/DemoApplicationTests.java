@@ -40,30 +40,42 @@ public class DemoApplicationTests
 {
 
     @TestConfiguration
-    static class CartServiceImplTestContextConf{
+    static class CartServiceImplTestContextConf
+    {
         @Bean
-        public ShoppingCartService shoppingCartService(){
+        public ShoppingCartService shoppingCartService()
+        {
             return new ShoppingCartServiceImpl();
         }
 
         @Bean
-        public CampaignService campaignService(){return new MoreThanFiveCampaignImpl();
+        public CampaignService campaignService()
+        {
+            return new MoreThanFiveCampaignImpl();
         }
 
         @Bean
-        public CampaignService campaignService3(){return new MoreThanThreeCampaignImpl();
+        public CampaignService campaignService3()
+        {
+            return new MoreThanThreeCampaignImpl();
         }
 
         @Bean
-        public CampaignService campaignService2(){return new MoreThanTwoCampaignImpl();
+        public CampaignService campaignService2()
+        {
+            return new MoreThanTwoCampaignImpl();
         }
 
         @Bean
-        public DeliveryService deliveryService(){return new DeliveryServiceImpl();
+        public DeliveryService deliveryService()
+        {
+            return new DeliveryServiceImpl();
         }
 
         @Bean
-        public CheckoutService checkoutService(){return new CheckoutServiceImpl();
+        public CheckoutService checkoutService()
+        {
+            return new CheckoutServiceImpl();
         }
     }
 
@@ -88,7 +100,8 @@ public class DemoApplicationTests
     ShoppingCart shoppingCart;
 
     @Before
-    public void Requirements(){
+    public void Requirements()
+    {
         Category category1 = new Category();
         category1.setCategoryType("FOOD");
 
@@ -98,15 +111,15 @@ public class DemoApplicationTests
         Category category3 = new Category();
         category3.setCategoryType("ELECTRONIC");
 
-        Product product1 = new Product("1","Apple",6.00,category1,1,6.00);
-        Product product2 = new Product("2","Orange",8.00,category1,2,8.00);
-        Product product5 = new Product("3","Banana",9.00,category1,1,9.00);
+        Product product1 = new Product("1", "Apple", 6.00, category1, 1, 6.00);
+        Product product2 = new Product("2", "Orange", 8.00, category1, 2, 8.00);
+        Product product5 = new Product("3", "Banana", 9.00, category1, 1, 9.00);
 
 
-        Product product3 = new Product("3","Glasses",40.00,category2,6,40.00);
-        Product product4 = new Product("3","Gloves",0.00,category2,6,105.00);
+        Product product3 = new Product("3", "Glasses", 40.00, category2, 6, 40.00);
+        Product product4 = new Product("3", "Gloves", 0.00, category2, 6, 105.00);
 
-        Product product6 = new Product("4","KeyBoard",0.00,category3,1,120.00);
+        Product product6 = new Product("4", "KeyBoard", 0.00, category3, 1, 120.00);
 
 
         List<Product> cartProducts = new ArrayList<>();
@@ -119,8 +132,8 @@ public class DemoApplicationTests
         cartProducts.add(product6);
 
 
-        Delivery delivery1 = new Delivery("1",2.00);
-        Delivery delivery2 = new Delivery("2",3.00);
+        Delivery delivery1 = new Delivery("1", 2.00);
+        Delivery delivery2 = new Delivery("2", 3.00);
 
         List<Delivery> deliveries = new ArrayList<>();
 
@@ -136,12 +149,14 @@ public class DemoApplicationTests
 
 
     @Test
-    public void ConfigTest(){
+    public void ConfigTest()
+    {
         System.out.println(shoppingCartService);
     }
 
     @Test
-    public void ProductTests(){
+    public void ProductTests()
+    {
 
 
         System.out.println(shoppingCart);
@@ -149,7 +164,8 @@ public class DemoApplicationTests
 
     @Ignore
     @Test
-    public void campaignTests(){
+    public void campaignTests()
+    {
 
         /*System.out.println(shoppingCart.getTotalAmount());
         shoppingCartService.getCampaignDiscount(shoppingCart,null);*/
@@ -161,58 +177,61 @@ public class DemoApplicationTests
 
     @Ignore
     @Test
-    public void moreThanTwoTest(){
+    public void moreThanTwoTest()
+    {
         shoppingCartService.getTotalAmountAfterDiscounts(shoppingCart);
-        Assert.assertEquals(String.valueOf(3.0),String.valueOf(shoppingCart.getDiscountedAmount()));
+        Assert.assertEquals(String.valueOf(3.0), String.valueOf(shoppingCart.getDiscountedAmount()));
     }
 
     @Ignore
     @Test
-    public void moreThanFive(){
+    public void moreThanFive()
+    {
         shoppingCartService.getTotalAmountAfterDiscounts(shoppingCart);
-        Assert.assertEquals(String.valueOf(270.0),String.valueOf(shoppingCart.getDiscountedAmount()));
+        Assert.assertEquals(String.valueOf(270.0), String.valueOf(shoppingCart.getDiscountedAmount()));
 
     }
 
     @Ignore
     @Test
-    public void grouping(){
+    public void grouping()
+    {
         Map<Category, List<Product>> groupMap = ShoppingCart.groupProductsByCategory(shoppingCart);
         System.out.println(groupMap);
     }
 
     @Test
-    public void checkoutTests(){
+    public void coTests()
+    {
         ShoppingCart cart = checkoutService.checkoutCart(shoppingCart);
         Map<Category, List<Product>> groupMap = ShoppingCart.groupProductsByCategory(cart);
         groupMap.forEach((category, products) -> {
             System.out.println(category.getCategoryType());
-            products.forEach(product -> System.out.printf("%14s, %15s%n", product.getTitle(),String.valueOf(product.getCampaignedPrice())));
+            products.forEach(product -> System.out.printf("%14s, %15s%n", product.getTitle(), String.valueOf(product.getCampaignedPrice())));
         });
 
     }
 
     @Test
-    public void coTests(){
+    public void checkoutTests()
+    {
+
         ShoppingCart cart = checkoutService.checkoutCart(shoppingCart);
+
         Map<Category, List<Product>> groupMap = ShoppingCart.groupProductsByCategory(cart);
         groupMap.forEach((category, products) -> {
             System.out.println(category.getCategoryType());
-            System.out.printf("%14s %15s %16s%n", "Product Name","Quantity","Unit Price");
-            products.forEach(product -> System.out.printf("%14s %15s %16s%n", product.getTitle(),String.valueOf(product.getQuantity()),String.valueOf(product.getCampaignedPrice())));
+            System.out.printf("%14s %15s %16s%n", "Product Name", "Quantity", "Unit Price");
+            products.forEach(product -> System.out.printf("%14s %15s %16s%n", product.getTitle(), String.valueOf(product.getQuantity()), String.valueOf(product.getCampaignedPrice())));
         });
 
         DecimalFormat df = new DecimalFormat("#.##");
-        System.out.printf("%14s %15s%n", "TOTAL PRICE:",df.format(shoppingCart.getTotalAmount()));
-        System.out.printf("%14s %15s%n", "DISCOUNTED PRICE:",df.format(shoppingCart.getDiscountedAmount()));
-        System.out.printf("%14s %15s%n", "DELIVERY COST:",df.format(shoppingCart.getDeliveryCost()));
-
-
-
+        System.out.printf("%14s %15s%n", "TOTAL PRICE:", df.format(shoppingCart.getTotalAmount()));
+        System.out.printf("%14s %15s%n", "DISCOUNTED PRICE:", df.format(shoppingCart.getDiscountedAmount()));
+        System.out.printf("%14s %15s%n", "DELIVERY COST:", df.format(shoppingCart.getDeliveryCost()));
 
 
     }
-
 
 
 }

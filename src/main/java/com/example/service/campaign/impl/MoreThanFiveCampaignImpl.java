@@ -20,7 +20,8 @@ public class MoreThanFiveCampaignImpl implements CampaignService
     public void applyCampaignToCart(ShoppingCart cart, Category category)
     {
 
-        for(Product product : category.getProducts()){
+        for (Product product : category.getProducts())
+        {
             product.setCampaignedPrice(product.getCampaignedPrice() / 2);
         }
 

@@ -17,8 +17,9 @@ public class GeneralCouponDiscountImpl implements CouponService
     @Override
     public void applyCouponToCart(ShoppingCart cart)
     {
-        if(cart.getDiscountedAmount() > MIN_PURCHASE){
-            double couponedAmount = cart.getDiscountedAmount() - (cart.getDiscountedAmount()*0.1);
+        if (cart.getDiscountedAmount() > MIN_PURCHASE)
+        {
+            double couponedAmount = cart.getDiscountedAmount() - (cart.getDiscountedAmount() * 0.1);
 
             cart.setDiscountedAmount(couponedAmount);
         }

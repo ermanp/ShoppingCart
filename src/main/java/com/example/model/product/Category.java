@@ -34,11 +34,13 @@ public class Category
     }
 
 
-    public static int calculateProductNumberUnderCategory(Category category){
+    public static int calculateProductNumberUnderCategory(Category category)
+    {
 
         int total = 0;
 
-        for(Product product : category.getProducts()){
+        for (Product product : category.getProducts())
+        {
             total += product.getQuantity();
         }
 

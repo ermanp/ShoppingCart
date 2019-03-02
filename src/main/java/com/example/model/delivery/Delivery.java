@@ -26,8 +26,4 @@ public class Delivery
         this.deliveryCost = deliveryCost;
     }
 
-    /*    public double getDeliveryAmount()
-    {
-        return (this.deliveryAmount*this.deliveryNumber) + fixedCost;
-    }*/
 }

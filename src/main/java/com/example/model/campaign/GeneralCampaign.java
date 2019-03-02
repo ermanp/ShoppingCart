@@ -25,13 +25,13 @@ public class GeneralCampaign extends Campaign
         double campaignedPrice = 0;
         double discountAmount = 0;
 
-        for(Product product : products){
+        for (Product product : products)
+        {
             totalCost += product.getPrice();
             campaignedPrice += (product.getPrice() - 5);
 
-            discountAmount += ((totalCost - campaignedPrice)*product.getQuantity());
-            /*product.setCampaignedPrice(product.getPrice() - 5);
-            product.setDiscountedCost(product.getPrice() - 5);*/
+            discountAmount += ((totalCost - campaignedPrice) * product.getQuantity());
+
         }
         return discountAmount;
     }

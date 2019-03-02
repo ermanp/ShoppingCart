@@ -58,16 +58,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService
 
             * Daha sonra bu yaklaşımı değiştirip aşağıdaki for döngüsünü yazdım, burada Category'nin altındaki Productların miktarını hesaba katıyor.
 */
-        for(Category category : cart.getCategories()){
-            if(Category.calculateProductNumberUnderCategory(category) > 2){
-                moreThanTwoCampaignService.applyCampaignToCart(cart,category);
+        for (Category category : cart.getCategories())
+        {
+            if (Category.calculateProductNumberUnderCategory(category) > 2)
+            {
+                moreThanTwoCampaignService.applyCampaignToCart(cart, category);
             }
-            if(Category.calculateProductNumberUnderCategory(category) > 5){
-                moreThanFiveCampaignService.applyCampaignToCart(cart,category);
+            if (Category.calculateProductNumberUnderCategory(category) > 5)
+            {
+                moreThanFiveCampaignService.applyCampaignToCart(cart, category);
                 continue;
             }
-            if(Category.calculateProductNumberUnderCategory(category) > 3){
-                moreThanThreeCampaignService.applyCampaignToCart(cart,category);
+            if (Category.calculateProductNumberUnderCategory(category) > 3)
+            {
+                moreThanThreeCampaignService.applyCampaignToCart(cart, category);
                 continue;
             }
         }
@@ -95,7 +99,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService
 
         double lastCampaignedAmount = 0.0;
 
-        for (Product product : cart.getProducts()){
+        for (Product product : cart.getProducts())
+        {
             lastCampaignedAmount += (product.getCampaignedPrice() * product.getQuantity());
         }
 
@@ -121,8 +126,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService
     @Override
     public double getCouponDiscount(ShoppingCart cart, Coupon coupon)
     {
-        if(cart.getTotalAmount() > coupon.getMinPurchase()){
-            if(coupon.getType().equals("RATE")){
+        if (cart.getTotalAmount() > coupon.getMinPurchase())
+        {
+            if (coupon.getType().equals("RATE"))
+            {
                 return coupon.getAmount() * cart.getDiscountedAmount() / 100;
             }
         }
@@ -134,17 +141,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService
     {
         /* Metot, Carta kampanyalar dahilinde ne kadar fiyat indirimi olacağını gösterir
 
-               * Category'nin altındaki product sayısı, product quantity de hesaba katılarak alındı
+         * Category'nin altındaki product sayısı, product quantity de hesaba katılarak alındı
 
-               * Örn: Cartta sadece 1 ürün ama 6 adet varsa Cart moreThanFive ve GeneralCampaign kampanyasına dahil ediliyor
+         * Örn: Cartta sadece 1 ürün ama 6 adet varsa Cart moreThanFive ve GeneralCampaign kampanyasına dahil ediliyor
 
-               * GeneralCampaign aynı categorirnin 1den fazla ürünü eklenen cartlar için.
+         * GeneralCampaign aynı categorirnin 1den fazla ürünü eklenen cartlar için.
 
-        */
+         */
 
         double totalDiscountAmountForCart = 0;
 
-        for(Category category : cart.getCategories())
+        for (Category category : cart.getCategories())
         {
             if (cart.getAppliedCampaignNumber() < 3)
             {

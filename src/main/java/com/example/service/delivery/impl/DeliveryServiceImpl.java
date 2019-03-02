@@ -42,11 +42,13 @@ public class DeliveryServiceImpl implements DeliveryService
 
         numberOfProducts = cart.getProducts().size();
 
-        for(Delivery delivery : cart.getDeliveries()){
+        for (Delivery delivery : cart.getDeliveries())
+        {
             deliveryCost += (delivery.getDeliveryCost() * numberOfDeliveries);
         }
 
-        for(Product product : cart.getProducts()){
+        for (Product product : cart.getProducts())
+        {
             deliveryCost += (product.getPrice() + cart.getProducts().size());
         }
 

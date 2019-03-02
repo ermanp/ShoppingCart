@@ -17,7 +17,8 @@ public class MoreThanTwoCampaignImpl implements CampaignService
     @Override
     public void applyCampaignToCart(ShoppingCart cart, Category category)
     {
-        for(Product product : category.getProducts()){
+        for (Product product : category.getProducts())
+        {
             product.setCampaignedPrice(product.getCampaignedPrice() - 5);
         }
     }

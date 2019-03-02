@@ -66,18 +66,19 @@ public class ShoppingCart
         this.campaignedAmount = totalAmount;
     }
 
-    public static Map<Category,List<Product>> groupProductsByCategory(ShoppingCart cart){
-        Map<Category,List<Product>> groupByCategoryMap =
+    public static Map<Category, List<Product>> groupProductsByCategory(ShoppingCart cart)
+    {
+        Map<Category, List<Product>> groupByCategoryMap =
                 cart.getProducts().stream().collect(Collectors.groupingBy(Product::getCategory));
 
         return groupByCategoryMap;
 
     }
 
-    public void increaseAppliedCampaignNumber(){
-        this.appliedCampaignNumber ++;
+    public void increaseAppliedCampaignNumber()
+    {
+        this.appliedCampaignNumber++;
     }
-
 
 
 }
