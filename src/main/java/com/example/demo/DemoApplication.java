@@ -16,6 +16,12 @@ public class DemoApplication
     {
         SpringApplication.run(DemoApplication.class, args);
 
+/***************************************
+
+        DemoApplicationTests.java classındaki checkoutTests() metodu run edildiğinde console'da istenen değerler dönecektir.
+
+****************************************/
+
 
     }
 
