@@ -12,6 +12,12 @@ import java.util.List;
  */
 public abstract class Campaign
 {
+    /*
+     * Kampanyaları ayrı classlar olarak ele aldım, belirli offerlarla, ürünlerle ilişkisi veye kendilerine özel şartları olan gibi..
+     * Bu yüzden Farklı sayı ile aynı işlemi yapan MoreThanFiveCampaign ve MoreThanThreeCampaign classlarını unique özellikleri olan
+     * kampanyalarmış gibi varsayarak yarattım.
+     *
+     * */
     private String id;
 
     private String name;
